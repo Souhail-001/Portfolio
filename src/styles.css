@@ -1,4 +1,6 @@
 @import "tailwindcss";
+#root{isolation:isolate}
+.particle-background{position:fixed;inset:0;z-index:-1;width:100%;height:100%;pointer-events:none}
 /* Shared theme tokens: change these to customize both color modes. */
 :root{font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color-scheme:dark;--bg:#10151e;--surface:#161d28;--surface2:#1b2431;--text:#f2f3f5;--muted:#a3acba;--line:#2b3442;--accent:#a6c7ff;--button:#b6d1ff;--button-text:#10213b;--header:rgba(16,21,30,.94);background:var(--bg);color:var(--text);font-synthesis:none}
 :root[data-theme=light]{color-scheme:light;--bg:#f9fafc;--surface:#f0f3f8;--surface2:#e5ebf4;--text:#172235;--muted:#526177;--line:#d5dce6;--accent:#275eac;--button:#285eab;--button-text:#fff;--header:rgba(249,250,252,.95)}

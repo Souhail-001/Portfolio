@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { ArrowUpRight, ArrowRight, Download, Github, Linkedin, Mail, Sun, Moon, MapPin, Menu, X, Code2, Braces, Check, ExternalLink } from 'lucide-react';
 import projects from './data/projects.json';
 import { profile, experience } from './data/profile';
+import ParticleBackground from './ParticleBackground';
 import './styles.css';
 
 const navItems = ['About', 'Projects', 'Experience', 'Contact'];
@@ -17,6 +18,7 @@ function App() {
  useEffect(()=>{if(!('IntersectionObserver' in window)) return;const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>{el.classList.add('observe');observer.observe(el)});return()=>observer.disconnect()},[]);
  function contact(e){e.preventDefault();const data=new FormData(e.currentTarget);const subject=encodeURIComponent(`Portfolio inquiry from ${data.get('name')}`);const body=encodeURIComponent(`${data.get('message')}\n\nFrom: ${data.get('name')}\nEmail: ${data.get('email')}`);window.location.href=`mailto:${profile.email}?subject=${subject}&body=${body}`;setDraft(true)}
  return <>
+ <ParticleBackground theme={theme}/>
  <a className="skip-link" href="#main">Skip to content</a>
  <header className="header"><div className="container nav"><a className="wordmark" href="#home" aria-label="Souhail Mbarki home">souhail<span>.</span></a><nav aria-label="Main navigation" className={menu?'nav-links open':'nav-links'}>{navItems.map(item=><a key={item} href={`#${item.toLowerCase()}`} onClick={()=>setMenu(false)}>{item}</a>)}</nav><div className="nav-actions"><button className="icon-button" aria-label={`Switch to ${theme==='dark'?'light':'dark'} mode`} onClick={()=>setTheme(theme==='dark'?'light':'dark')}>{theme==='dark'?<Sun size={18}/>:<Moon size={18}/>}</button><a className="nav-resume" href={resumeUrl} download>Resume <Download size={14}/></a><button className="icon-button mobile-toggle" aria-label={menu?'Close menu':'Open menu'} aria-expanded={menu} onClick={()=>setMenu(!menu)}>{menu?<X/>:<Menu/>}</button></div></div></header>
  <main id="main">

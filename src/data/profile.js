@@ -13,5 +13,5 @@ export const experience = [
  {type:'EXPERIENCE',date:'Jul — Aug 2026',title:'AI Engineering Intern',organization:'TechNet World',points:['Built an agentic LLM workflow to translate natural-language business rules into structured Boolean expressions.','Implemented structured prompting, contextual retrieval, and schema-based output validation.','Integrated Z3 logical validation to detect conflicting and inconsistent rules.']},
  {type:'EDUCATION',date:'2024 — Present',title:'Software Engineering',organization:'National Engineering School of Tunis',points:[]},
  {type:'EDUCATION',date:'2022 — 2024',title:'Mathematics & Physics',organization:'IPEIM · Preparatory classes',points:[]},
- {type:'COMMUNITY',date:'2025 — Present',title:'Treasurer',organization:'IEEE ENIT SIGHT Group',points:[]}
+ {type:'COMMUNITY',date:'2025 — 2026',title:'Treasurer',organization:'IEEE ENIT SIGHT Group',points:[]}
 ];
