@@ -44,11 +44,40 @@ function ProjectCard({ project: p }) {
 function App() {
  const [theme,setTheme] = useState(document.documentElement.dataset.theme || 'dark');
  const [menu,setMenu] = useState(false);
- const [draft,setDraft] = useState(false);
+ const [contactStatus,setContactStatus] = useState('idle');
  useEffect(()=>{document.documentElement.dataset.theme=theme;try{localStorage.setItem('portfolio-theme',theme)}catch{}},[theme]);
  // Reveal once; reduced-motion users see content without animation.
  useEffect(()=>{if(!('IntersectionObserver' in window)) return;const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>{el.classList.add('observe');observer.observe(el)});return()=>observer.disconnect()},[]);
- function contact(e){e.preventDefault();const data=new FormData(e.currentTarget);const subject=encodeURIComponent(`Portfolio inquiry from ${data.get('name')}`);const body=encodeURIComponent(`${data.get('message')}\n\nFrom: ${data.get('name')}\nEmail: ${data.get('email')}`);window.location.href=`mailto:${profile.email}?subject=${subject}&body=${body}`;setDraft(true)}
+ async function contact(e){
+  e.preventDefault();
+  if(contactStatus==='sending') return;
+  const form=e.currentTarget;
+  const data=new FormData(form);
+  setContactStatus('sending');
+  const controller=new AbortController();
+  const timeout=setTimeout(()=>controller.abort(),20000);
+  try{
+   const response=await fetch(`https://formsubmit.co/ajax/${profile.email}`,{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    signal:controller.signal,
+    body:JSON.stringify({
+     name:data.get('name'), email:data.get('email'), message:data.get('message'),
+     _subject:`Portfolio inquiry from ${data.get('name')}`,
+     _honey:data.get('_honey'), _template:'table'
+    })
+   });
+   const result=await response.json();
+   if(!response.ok || (result.success!==true && result.success!=='true')) throw new Error('Submission failed');
+   form.reset();
+   setContactStatus('sent');
+  }catch{
+   setContactStatus('error');
+  }finally{
+   clearTimeout(timeout);
+  }
+ }
+
  return <>
  <ParticleBackground theme={theme}/>
  <a className="skip-link" href="#main">Skip to content</a>
@@ -59,7 +88,7 @@ function App() {
  <section id="projects" className="section container"><div className="section-heading reveal"><div><p className="eyebrow">01 / SELECTED WORK</p><h2>Learning by building.</h2></div><a className="text-link" href={profile.github} target="_blank" rel="noreferrer">Explore GitHub <ArrowUpRight size={16}/></a></div><div className="projects-grid">{projects.map(p=><ProjectCard key={p.id} project={p}/>)}</div></section>
  <section id="about" className="about-section"><div className="container section"><div className="section-heading reveal"><div><p className="eyebrow">02 / ABOUT ME</p><h2>A builder’s mindset.<br/>A problem-solver’s curiosity.</h2></div></div><div className="about-grid"><div className="portrait reveal">{profile.photo?<img src={profile.photo} alt="Souhail Mbarki" loading="lazy" width="500" height="550"/>:<div className="portrait-placeholder"><span className="portrait-label">THE PERSON BEHIND THE CODE</span><span className="monogram">SM<span>.</span></span><div><strong>Souhail Mbarki</strong><span>AI Engineer · Tunis, Tunisia</span></div></div>}</div><div className="about-copy reveal"><p>{profile.bio}</p><p>Competitive programming taught me to break complex problems into clear, testable steps. I bring that same approach to building AI systems.</p><div className="achievements"><div><strong>18+</strong><span>Onsite programming contests</span></div><div><strong>2×</strong><span>TCPC finalist</span></div><div><strong>5th</strong><span>In Tunisia · ODC 2025</span></div></div><a className="text-link" href={profile.codeforces} target="_blank" rel="noreferrer">My competitive programming journey <ArrowUpRight size={16}/></a></div></div><div className="skills-grid reveal">{Object.entries(profile.skills).map(([group,skills])=><div key={group}><h3>{group}</h3><div className="badges">{skills.map(s=><span key={s}>{s}</span>)}</div></div>)}</div></div></section>
  <section id="experience" className="section container"><div className="section-heading reveal"><div><p className="eyebrow">03 / THE JOURNEY</p><h2>Building my foundations.</h2></div><a className="text-link" href={resumeUrl} download>Download resume <Download size={16}/></a></div><div className="timeline">{experience.map((e,i)=><article className="timeline-item reveal" key={i}><div className="timeline-date"><span>{e.date}</span><p>{e.type}</p></div><div className="timeline-body"><h3>{e.title}</h3><p className="organization">{e.organization}</p>{e.points.length>0&&<ul>{e.points.map(p=><li key={p}>{p}</li>)}</ul>}</div></article>)}</div></section>
- <section id="contact" className="contact-section"><div className="container section contact-grid"><div className="reveal"><p className="eyebrow">04 / WHAT’S NEXT?</p><h2>Let’s build<br/>something <span>useful.</span></h2><p className="contact-copy">Have an AI/ML internship opportunity, a project idea, or just want to say hello? I’d love to hear from you.</p><a className="email-link" href={`mailto:${profile.email}`}>{profile.email} <ArrowUpRight size={18}/></a><Socials/><a className="phone-link" href={`tel:${profile.phone}`}>+216 52 864 293</a></div><form className="contact-form reveal" onSubmit={contact}><div className="form-row"><label>Your name<input name="name" required autoComplete="name" placeholder="Ada Lovelace" maxLength={100}/></label><label>Email address<input name="email" type="email" required autoComplete="email" placeholder="ada@example.com" maxLength={200}/></label></div><label>What’s on your mind?<textarea name="message" required rows={5} placeholder="Tell me a little about your opportunity or idea…" maxLength={5000}/></label><div className="form-bottom"><p>Opens a draft in your email app.</p><button className="button primary" type="submit">Let’s talk <ArrowUpRight size={18}/></button></div>{draft&&<p className="form-status" role="status"><Check size={16}/> Email draft requested. If no app opened, use the email link to contact me directly.</p>}</form></div></section>
+ <section id="contact" className="contact-section"><div className="container section contact-grid"><div className="reveal"><p className="eyebrow">04 / WHAT’S NEXT?</p><h2>Let’s build<br/>something <span>useful.</span></h2><p className="contact-copy">Have an AI/ML internship opportunity, a project idea, or just want to say hello? I’d love to hear from you.</p><a className="email-link" href={`mailto:${profile.email}`}>{profile.email} <ArrowUpRight size={18}/></a><Socials/><a className="phone-link" href={`tel:${profile.phone}`}>+216 52 864 293</a></div><form className="contact-form reveal" onSubmit={contact} aria-busy={contactStatus==='sending'}><input type="text" name="_honey" className="contact-honeypot" tabIndex={-1} autoComplete="off" aria-hidden="true"/><fieldset disabled={contactStatus==='sending'}><div className="form-row"><label>Your name<input name="name" required autoComplete="name" placeholder="Ada Lovelace" maxLength={100}/></label><label>Email address<input name="email" type="email" required autoComplete="email" placeholder="ada@example.com" maxLength={200}/></label></div><label>What’s on your mind?<textarea name="message" required rows={5} placeholder="Tell me a little about your opportunity or idea…" maxLength={5000}/></label><div className="form-bottom"><p>I’ll get back to you as soon as I can.</p><button className="button primary" type="submit">{contactStatus==='sending'?'Sending…':'Let’s talk'} <ArrowUpRight size={18}/></button></div></fieldset><div aria-live="polite" aria-atomic="true">{contactStatus==='sent'&&<p className="form-status"><Check size={16}/> Message sent! Thanks for reaching out.</p>}</div>{contactStatus==='error'&&<p className="form-status form-error" role="alert">Your message couldn’t be sent. Please try again in a moment.</p>}</form></div></section>
  </main><footer className="container footer"><a href="#home" className="wordmark">souhail<span>.</span></a><p>© {new Date().getFullYear()} Souhail Mbarki</p><Socials/><a href="#home" className="back-top">Back to top ↑</a></footer>
  </>;
 }

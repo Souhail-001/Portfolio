@@ -33,7 +33,9 @@ npm run preview
 
 ## Contact behavior
 
-The form uses browser validation and opens a prefilled `mailto:` draft. It does **not** send or store messages on a server. Visitors must send the draft in their email app. Direct email, LinkedIn, GitHub, and phone links are also provided. To send directly from the site, integrate a form service or serverless endpoint and add appropriate success/error handling; never put secret API keys in frontend code.
+The contact form sends messages through [FormSubmit’s AJAX endpoint](https://formsubmit.co/ajax-documentation) to `profile.email`, without opening an email app or another tab. It validates required fields, disables inputs while sending, and shows “Message sent!” only after the service accepts the submission. Failures keep the entered message available for retry. Requests time out after 20 seconds; a hidden honeypot helps filter spam.
+
+**One-time setup:** submit the form on your deployed website, then open the activation email sent by FormSubmit to `souhayelmbarki15@gmail.com` and confirm the address (check spam too). Delivery depends on completing this activation. If you change `profile.email`, activate the new address as well. No API keys or hosting-specific backend are needed. Visitor names, email addresses, and messages are processed by FormSubmit. Local development can verify the UI, but live delivery must be checked after deployment and activation.
 
 ## Deploy
 

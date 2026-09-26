@@ -20,3 +20,5 @@
 .project-status{display:inline-flex;align-items:center;gap:7px;padding:5px 10px;border:1px solid var(--accent);border-radius:30px;background:var(--surface2);color:var(--accent);font-size:11px;font-weight:600}
 .project-status:before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor}
 .project-detail strong{color:var(--text);font-weight:550}
+
+.contact-form fieldset{border:0;padding:0;margin:0;min-width:0}.contact-form .contact-honeypot{display:none}.contact-form button:disabled{cursor:wait;opacity:.7;transform:none}.form-status.form-error{color:var(--text)}
