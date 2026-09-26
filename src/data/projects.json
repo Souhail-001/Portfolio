@@ -1,5 +1,122 @@
 [
-  {"id":"aurahire","number":"01","title":"AuraHire","category":"LLM APPLICATION · FULL STACK","description":"An AI-powered career assistant that brings job discovery, profile analysis, and interview preparation into one platform.","tech":["Python","FastAPI","RAG","Docker"],"github":"https://github.com/Souhail-001/AI_Assistant","demo":null,"image":null,"imageAlt":"AuraHire career assistant screenshot","featured":true,"previewTitle":"A little clarity. A better next step.","previewLabel":"AI-POWERED CAREER ASSISTANT","details":"Modular REST APIs, JWT authentication, semantic search, and context-aware responses."},
-  {"id":"predforces","number":"02","title":"Codeforces Performance Predictor","category":"MACHINE LEARNING · COMPETITIVE PROGRAMMING","description":"A competitive programming assistant that predicts contest performance and recommends problems to help you improve.","tech":["Python","Machine learning","Codeforces API"],"github":"https://github.com/Souhail-001/PredForces","demo":null,"image":null,"imageAlt":"Codeforces performance predictor screenshot","featured":false,"previewTitle":"Practice with purpose.","previewLabel":"PERFORMANCE INTELLIGENCE","details":"Personalized problem recommendations grounded in Codeforces contest data."},
-  {"id":"business-rules","number":"03","title":"Business Rule Translation","category":"AGENTIC AI · INTERNSHIP PROJECT","description":"An agentic workflow that translates natural-language business rules into structured Boolean expressions and checks their logical consistency.","tech":["LLMs","Contextual retrieval","Z3","Schema validation"],"github":null,"demo":null,"image":null,"imageAlt":"Business rule translation workflow screenshot","featured":false,"previewTitle":"From language to logic.","previewLabel":"BUSINESS RULE VALIDATION","details":"Built during my AI Engineering internship at TechNet World."}
+  {
+    "id": "aurahire",
+    "number": "01",
+    "title": "AuraHire",
+    "category": "LLM APPLICATION · FULL STACK",
+    "description": "An AI-powered career assistant that brings job discovery, profile analysis, and interview preparation into one platform.",
+    "tech": [
+      "Python",
+      "FastAPI",
+      "RAG",
+      "Docker"
+    ],
+    "github": "https://github.com/Souhail-001/AI_Assistant",
+    "demo": null,
+    "image": null,
+    "imageAlt": "AuraHire career assistant screenshot",
+    "featured": true,
+    "previewTitle": "A little clarity. A better next step.",
+    "previewLabel": "AI-POWERED CAREER ASSISTANT",
+    "details": "Modular REST APIs, JWT authentication, semantic search, and context-aware responses.",
+    "previewName": "aura",
+    "previewMark": "✳",
+    "previewSteps": [
+      "Discover",
+      "Prepare",
+      "Grow"
+    ],
+    "previewEndArrow": true
+  },
+  {
+    "id": "agentops",
+    "number": "02",
+    "title": "AgentOps",
+    "subtitle": "Agentic LLMOps Platform",
+    "category": "AGENTIC AI · LLMOPS",
+    "status": "In Progress",
+    "description": "An in-progress platform for observing, evaluating, and improving LLM and RAG agents through experiment tracking, execution traces, and configuration comparisons.",
+    "contribution": "Observability and evaluation, including MLflow experiment tracking, execution tracing, and evaluation workflows.",
+    "progress": "Initial MLflow tracking setup; tracing and evaluation workflows under development.",
+    "plannedCapabilities": "Compare agent configurations, measure latency and response quality, investigate failures, and integrate CI quality gates and deployment automation.",
+    "techLabel": "Planned stack",
+    "tech": [
+      "Python",
+      "MLflow",
+      "FastAPI",
+      "Docker",
+      "GitHub Actions",
+      "React"
+    ],
+    "github": null,
+    "demo": null,
+    "image": null,
+    "featured": false,
+    "previewName": "agentops",
+    "previewMark": "⌁",
+    "previewKind": "PLATFORM CONCEPT",
+    "previewTitle": "Observe. Evaluate. Improve.",
+    "previewLabel": "LLM & RAG AGENT LIFECYCLE",
+    "previewSteps": [
+      "Experiments",
+      "Traces",
+      "Evaluations"
+    ]
+  },
+  {
+    "id": "predforces",
+    "number": "03",
+    "title": "Codeforces Performance Predictor",
+    "category": "MACHINE LEARNING · COMPETITIVE PROGRAMMING",
+    "description": "A competitive programming assistant that predicts contest performance and recommends problems to help you improve.",
+    "tech": [
+      "Python",
+      "Machine learning",
+      "Codeforces API"
+    ],
+    "github": "https://github.com/Souhail-001/PredForces",
+    "demo": null,
+    "image": null,
+    "imageAlt": "Codeforces performance predictor screenshot",
+    "featured": false,
+    "previewTitle": "Practice with purpose.",
+    "previewLabel": "PERFORMANCE INTELLIGENCE",
+    "details": "Personalized problem recommendations grounded in Codeforces contest data.",
+    "previewName": "predforces",
+    "previewMark": "↗",
+    "previewSteps": [
+      "Contest data",
+      "Personalized practice"
+    ],
+    "previewConnector": true
+  },
+  {
+    "id": "business-rules",
+    "number": "04",
+    "title": "Business Rule Translation",
+    "category": "AGENTIC AI · INTERNSHIP PROJECT",
+    "description": "An agentic workflow that translates natural-language business rules into structured Boolean expressions and checks their logical consistency.",
+    "tech": [
+      "LLMs",
+      "Contextual retrieval",
+      "Z3",
+      "Schema validation"
+    ],
+    "github": null,
+    "demo": null,
+    "image": null,
+    "imageAlt": "Business rule translation workflow screenshot",
+    "featured": false,
+    "previewTitle": "From language to logic.",
+    "previewLabel": "BUSINESS RULE VALIDATION",
+    "details": "Built during my AI Engineering internship at TechNet World.",
+    "previewName": "logic",
+    "previewMark": "{ }",
+    "previewSteps": [
+      "Business rules",
+      "Validated logic"
+    ],
+    "previewConnector": true,
+    "attribution": "Built at TechNet World"
+  }
 ]

@@ -11,3 +11,12 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.reveal.observe{opacity:1;transform:none}.button:hover{transform:none}}
 
 .hero-download{margin-top:22px;color:var(--muted);font-size:12px}.hero-meta{margin-top:20px}
+
+/* Project metadata uses the shared palette in both themes. */
+.preview-agentops{background:#243d55;color:#e0efff}
+.preview-agentops .preview-top{flex-wrap:wrap;gap:12px}
+.preview-agentops .preview-bottom{flex-wrap:wrap;gap:8px}
+.project-content>p.project-subtitle{margin:8px 0 12px;color:var(--accent)}
+.project-status{display:inline-flex;align-items:center;gap:7px;padding:5px 10px;border:1px solid var(--accent);border-radius:30px;background:var(--surface2);color:var(--accent);font-size:11px;font-weight:600}
+.project-status:before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor}
+.project-detail strong{color:var(--text);font-weight:550}

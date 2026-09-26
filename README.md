@@ -22,6 +22,8 @@ npm run preview
 
 - `src/data/profile.js`: bio, contact links, skills, education, and experience.
 - `src/data/projects.json`: add or edit projects without changing layout code. Each project has `id`, `number`, `title`, `category`, `description`, `details`, `tech`, `github`, `demo`, `image`, `imageAlt`, `featured`, `previewTitle`, and `previewLabel`.
+- Optional project metadata: `subtitle`, `status`, `contribution`, `progress`, `plannedCapabilities`, and `techLabel` distinguish current work from plans. AgentOps lists its initial MLflow setup separately from its planned stack and capabilities.
+- Overview panels use `previewName`, `previewMark`, `previewKind`, and `previewSteps`; `previewConnector` and `previewEndArrow` control decorative arrows. Optional `attribution` is explicit per project, never inferred from a missing URL.
 - Put project screenshots in `public/`, then set `image` to `./filename.webp`. Use descriptive `imageAlt` text. The existing typographic overview panels are placeholders, not actual application screenshots.
 - Set a missing GitHub or demo URL to `null`; unavailable links stay hidden. No live demo links were supplied in the resume.
 - Add your photo to `public/` and set `profile.photo` to `./photo.webp`. Until then, the site displays an intentional initials placeholder.
